@@ -12,22 +12,45 @@ A pull request reviewer bot for [Orca](https://github.com/stablyai/orca). It rev
 
 - `SOUL.md`: who the bot is, what wakes it, what it reports and what it may never do.
 - `skills/pr-review-standard/SKILL.md`: the review procedure. Gate, understanding the task, the review standard, verification scaled by risk (mutation, adversarial, property-based and model-based testing, differential testing, fault injection, small TLA+ models, Foundry fuzz and invariant tests, migration checks), finding validation, comment format, learning and re-review.
+- `skills/pr-review-standard/rereview.md`: the re-review after new commits. Interdiff from the last reviewed SHA, each finding rechecked with the evidence that found it, and the opt-in to resolve proved threads.
+- `skills/pr-review-standard/dependabot.md`: the light review for Dependabot PRs. Supply chain checks on the new version, then whether it breaks the repo.
+- `skills/pr-review-standard/checkout.md`: where the PR code runs. A temporary worktree from your clone, found with `orca repo list` or in the folders the bot's memory maps to each GitHub owner.
+- `examples/automation.txt`: the automation prompt.
 
-The soul stays short and stable. The procedure lives in the skill, so it can change without touching the bot's identity.
+The soul stays short and stable. The procedure lives in the skill, so it can change without touching the bot's identity. Nothing in these files names a person, an org or a path: the bot finds your clones through Orca or its memory, and acts as you through `gh`.
 
 ## Install
 
-With an existing Orca bot created from the Pull request review template, from this folder:
+Create a bot in Orca named `Pull request reviewer`, then from this folder:
 
 ```sh
-BOT=~/.orca/bots/pull-request-review
+BOT=$(dirname "$(grep -l '"name": "Pull request reviewer"' ~/.orca/bots/*/bot.json)")
 cp "$BOT/SOUL.md" "$BOT/SOUL.md.bak"
 cp SOUL.md "$BOT/SOUL.md"
 mkdir -p "$BOT/.claude/skills/pr-review-standard"
-cp skills/pr-review-standard/SKILL.md "$BOT/.claude/skills/pr-review-standard/"
+cp skills/pr-review-standard/*.md "$BOT/.claude/skills/pr-review-standard/"
 ```
 
-Then, in the bot's settings in Orca, change the `review_requested` event prompt to use `pr-review-standard` instead of `pr-review-checklist`. That prompt lives in config Orca regenerates, so edit it from the app, not on disk.
+The bot runs PR code in a worktree of your own clone. Register the repos you review with `orca repo add --path <path>`, or tell the bot in its chat which folder holds the clones of each GitHub owner, and it keeps that in its memory.
+
+A bot made from Orca's Pull request review template may already have an automation and a `pr-review-checklist` skill. Check with `orca automations list`: if one exists, point it at this prompt with `orca automations edit <id> --prompt "$(cat examples/automation.txt)"` instead of creating a second one, and delete the old skill folder.
+
+Otherwise add the automation, limited to the repos you review:
+
+```sh
+orca automations create --bot "Pull request reviewer" --name "PR reviews and re-reviews" \
+  --on "github.review_requested in=your-org/your-repo" \
+  --on "github.mentioned in=your-org/your-repo" \
+  --on "github.pr_pushed in=your-org/your-repo" \
+  --runs-in new --results-to chat \
+  --prompt "$(cat examples/automation.txt)"
+```
+
+Without `in=`, every push to any open PR where the Orca GitHub app is installed starts a run. Per-PR review state goes to the bot's `memory/reviews/`, which stays on your machine.
+
+## Resolving threads
+
+The bot starts read-only. To let it reply to and resolve your review threads once it proved the fix, change the last line of your copy of the prompt to: "My owner allowed resolving review threads whose fix I proved, as .claude/skills/pr-review-standard/rereview.md says; that is the only thing allowed on GitHub. Never approve." It never approves.
 
 ## Comment prefixes
 

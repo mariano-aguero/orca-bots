@@ -12,7 +12,7 @@ Bots for [Orca](https://github.com/stablyai/orca), ready to install. Each one do
 
 | Bot | Starts on | What it does | Writes |
 |---|---|---|---|
-| [Pull request reviewer](pr-reviewer/) | A review request | Checks the PR against its task, verifies it by running the code, and drafts validated inline comments with suggested fixes | Nothing until you allow it |
+| [Pull request reviewer](pr-reviewer/) | A review request, a mention or new commits | Checks the PR against its task, verifies it by running the code, and drafts validated inline comments with suggested fixes | Nothing until you allow it |
 | [Garbage collector](garbage-collector/) | A schedule | Removes useless comments and proven dead code and tests, one small PR per app | PRs against an integration branch, never merged |
 
 ## Layout

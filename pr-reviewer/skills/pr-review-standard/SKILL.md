@@ -6,6 +6,7 @@ description: Review a pull request against its original task and the team standa
 # Reviewing a pull request
 
 ## 0. Gate
+- On a first review of a PR opened by Dependabot, use the light review in `dependabot.md` in this folder instead of this procedure.
 - Skip drafts, closed PRs and PRs already reviewed at the same head SHA. If there are new commits, go to re-review (step 7).
 - Read the issue or ticket behind the PR (GitHub, Linear), the repo's agent instructions (AGENTS.md and similar), the PR template, `.github/risky-paths` and CODEOWNERS.
 - Read existing comments, from people and bots, only after your own pass, so they do not steer it.
@@ -63,7 +64,7 @@ Pre-mortem
 
 ## 3. Verify by running it, scaled by risk
 Always
-- Build and test the affected project in a clean worktree of the PR head. Record the SHA.
+- Build and test the affected project in a clean worktree of the PR head, made as `checkout.md` in this folder says. Record the SHA.
 - Every new or changed test must fail without the fix: revert the production change, run the test and quote the failure.
 
 When the PR adds or changes logic (calculations, validation, permissions, state)
@@ -144,4 +145,4 @@ If no finding survives, say so, along with the verification that backs that resu
 - When the same finding shows up in three PRs, propose to my owner turning it into a check: a lint rule, a type, a test or an API that makes it impossible.
 
 ## 7. Re-review
-On new commits, review only the diff since my last review. Resolve the threads the fix covers and do not repeat what is still open.
+On new commits, follow `rereview.md` in this folder: review only the diff since my last review, prove each fix with the evidence that found it, and do not repeat what is still open.
