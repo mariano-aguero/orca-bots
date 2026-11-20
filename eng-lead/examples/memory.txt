@@ -1,0 +1,2 @@
+Tell the bot in its chat, so it keeps it in memory:
+Writer model: sonnet. Verifier model: opus.

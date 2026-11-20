@@ -1,0 +1,4 @@
+Morning: build today's plan with the triage skill.
+Language: English.
+GitHub owners: your-org, your-user.
+Linear teams: ENG.

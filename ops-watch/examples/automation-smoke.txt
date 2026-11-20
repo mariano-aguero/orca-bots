@@ -1,0 +1,2 @@
+Scheduled smoke check: the latest run of the your-smoke-workflow workflow in your-org/your-repo failed (gh run list -R your-org/your-repo --workflow your-smoke-workflow --limit 1). Follow "Failed check run" in the ops-check skill for that run.
+Issues go to: linear:ENG.
