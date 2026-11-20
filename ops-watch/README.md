@@ -40,6 +40,22 @@ orca automations create --bot "Ops watch" --name "Smoke test failed" \
 
 
 
+## Without the Orca GitHub app
+
+GitHub events reach a bot only for repos the Orca GitHub app can see, and adding a repo to an org's installation takes an org admin. Without that, run the bot on a schedule and let it find the work with `gh`, which acts as you. `tools/gh-changed.sh` from this repo, used as the precheck, starts a run only when the precheck's output changed since the last one:
+
+```sh
+install -m 755 ../tools/gh-changed.sh ~/.local/bin/gh-changed
+mkdir -p "$BOT/state" && cp examples/precheck-smoke.sh "$BOT/state/" && chmod +x "$BOT/state/precheck-smoke.sh"
+orca automations create --bot "Ops watch" --name "Smoke test failed" \
+  --trigger "5 9-19 * * 1-5" --runs-in new --results-to chat \
+  --precheck "PATH=$(dirname "$(command -v gh)"):$HOME/.local/bin:/usr/bin:/bin $HOME/.local/bin/gh-changed $BOT/state/last $BOT/state/precheck-smoke.sh" \
+  --prompt "$(cat examples/automation-smoke.txt)"
+```
+
+Set your repos or owners in your copies of `examples/precheck-smoke.sh` and `examples/automation-smoke.txt`. Use events or the schedule, not both, or two runs can work the same pull request.
+
+
 ## License
 
 [MIT](../LICENSE)

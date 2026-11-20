@@ -71,6 +71,22 @@ The bot starts read-only. To let it reply to and resolve your review threads onc
 - [Trail of Bits skills](https://github.com/trailofbits/skills): false-positive checks and property-based testing
 - [Kent Beck, augmented coding](https://newsletter.kentbeck.com/p/augmented-coding-beyond-the-vibes)
 
+## Without the Orca GitHub app
+
+GitHub events reach a bot only for repos the Orca GitHub app can see, and adding a repo to an org's installation takes an org admin. Without that, run the bot on a schedule and let it find the work with `gh`, which acts as you. `tools/gh-changed.sh` from this repo, used as the precheck, starts a run only when the precheck's output changed since the last one:
+
+```sh
+install -m 755 ../tools/gh-changed.sh ~/.local/bin/gh-changed
+mkdir -p "$BOT/state" && cp examples/precheck.sh "$BOT/state/" && chmod +x "$BOT/state/precheck.sh"
+orca automations create --bot "Pull request reviewer" --name "PR reviews" \
+  --trigger "15,45 9-19 * * 1-5" --runs-in new --results-to chat \
+  --precheck "PATH=$(dirname "$(command -v gh)"):$HOME/.local/bin:/usr/bin:/bin $HOME/.local/bin/gh-changed $BOT/state/last $BOT/state/precheck.sh" \
+  --prompt "$(cat examples/automation-schedule.txt)"
+```
+
+Set your repos or owners in your copies of `examples/precheck.sh` and `examples/automation-schedule.txt`. Use events or the schedule, not both, or two runs can work the same pull request.
+
+
 ## License
 
 [MIT](../LICENSE)

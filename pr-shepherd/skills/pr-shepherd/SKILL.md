@@ -5,8 +5,15 @@ description: Move one of my owner's pull requests toward merge. Triage review th
 
 # Shepherding a pull request
 
+## Scheduled run
+When a schedule woke me instead of an event, find the work with `gh` in the repos the automation names:
+1. `gh pr list -R <repo> --author @me --state all --limit 30 --json number,url,state,isDraft,headRefOid,updatedAt,mergedAt`.
+2. Compare each PR with memory/seen.md: its head SHA, the newest review comment or comment I handled, the check state I last reported, and whether I reported its merge.
+3. Per PR, only what changed: new unresolved threads from others go to step 2, failed checks on a head I have not reported go to step 3, then step 4. A merge I have not reported goes to step 5.
+4. Write memory/seen.md. Nothing changed: end with NO_REPLY.
+
 ## 0. Gate
-- The event must be on a pull request authored by my owner (`gh api user -q .login`). Otherwise end with NO_REPLY.
+- The pull request must be authored by my owner (`gh api user -q .login`). Otherwise end with NO_REPLY.
 - Skip closed PRs, except on a merge, and PRs whose head lives in a fork.
 - Read the repo's AGENTS.md or CLAUDE.md, CONTRIBUTING, the PR template and `.github/risky-paths`. Their rules apply to every change.
 

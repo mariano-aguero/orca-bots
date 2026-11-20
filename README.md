@@ -34,6 +34,10 @@ Every bot folder has the same shape:
 
 The soul stays short and stable. The procedure lives in the skill, so it can improve without touching the bot's identity or its limits.
 
+## Tools
+
+- `tools/gh-changed.sh`: a precheck for scheduled automations. It runs a read-only command and lets the run start only when the output changed, so a bot that polls GitHub with `gh` costs nothing when there is nothing new.
+
 ## Install
 
 1. Create the bot in Orca.

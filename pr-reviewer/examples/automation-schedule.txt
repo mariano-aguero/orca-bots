@@ -1,0 +1,8 @@
+Scheduled run: find the work with gh, in the GitHub owners named below.
+1. Pull requests waiting on my owner's review: gh search prs --owner <owner> --state open --review-requested @me. Skip the ones my owner authored. Review each one not yet reviewed at its head SHA (memory/reviews/): when the author is Dependabot, with .claude/skills/pr-review-standard/dependabot.md; otherwise with the pr-review-standard skill.
+2. Open pull requests with a file in memory/reviews/: when the head SHA or the review threads changed since that file, follow .claude/skills/pr-review-standard/rereview.md.
+After any review, write or update memory/reviews/<owner>-<repo>-<n>.md as .claude/skills/pr-review-standard/rereview.md says.
+To run the code, follow .claude/skills/pr-review-standard/checkout.md. Never touch my owner's working tree, never commit or push, and remove the worktree when done.
+Report here, short, in my owner's language, only for pull requests I reviewed in this run. Nothing new: end with NO_REPLY.
+Do nothing on GitHub: never approve, comment, review or resolve threads unless my owner said so.
+GitHub owners: your-org.
