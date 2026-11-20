@@ -1,5 +1,10 @@
 # orca-pr-reviewer
 
+[![Orca](https://img.shields.io/badge/Orca-bot-1f6feb)](https://github.com/stablyai/orca)
+[![Last commit](https://img.shields.io/github/last-commit/mariano-aguero/orca-pr-reviewer)](https://github.com/mariano-aguero/orca-pr-reviewer/commits/main)
+[![Mode](https://img.shields.io/badge/mode-read--only%20by%20default-lightgrey)](#install)
+[![Topics](https://img.shields.io/badge/verifies-mutation%20%C2%B7%20property--based%20%C2%B7%20TLA%2B-8250df)](skills/pr-review-standard/SKILL.md)
+
 A pull request reviewer bot for [Orca](https://github.com/stablyai/orca). It reviews the PRs you are assigned to, checks the change against the task that asked for it, verifies it by running the code, and drafts inline comments that each carry a suggested fix. It stays read-only until you allow it to post.
 
 ## Files
