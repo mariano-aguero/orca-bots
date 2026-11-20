@@ -33,6 +33,8 @@ flowchart LR
 |---|---|
 | Tautology: restates the code | Delete |
 | Stale: no longer matches the code | Delete |
+| Process marker: "Flow 2b", "step 3.5", task numbers | Delete |
+| Outdated fact in a useful comment | Correct it when the code proves the value, else list it as a follow-up |
 | Excuse: justifies a workaround or hack | Delete, and file an issue to fix the workaround |
 | Constraint, quirk or invariant the code does not show | Keep |
 | TODO and FIXME | Keep |

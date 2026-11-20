@@ -30,7 +30,8 @@ First list open PRs with those titles and open issues titled "[<repo name>]". Dr
 Classify each comment in scope.
 
 - **Keep:** TODO and FIXME, license headers, lint or type directives with a reason, and any comment that says something the code does not and is still true: a constraint, a provider quirk, why an obvious alternative is wrong, an invariant. When in doubt, keep.
-- **Delete:** tautologies that restate the next line, stale comments, commented-out code, section banners, ceremonial docblocks on obvious functions.
+- **Delete:** tautologies that restate the next line, stale comments, commented-out code, section banners, ceremonial docblocks on obvious functions, and process markers that only make sense to whoever wrote the code ("Flow 2b", "step 3.5", "the case the review named", task or phase numbers).
+- **Correct:** a comment worth keeping that states an outdated fact (a count, a timeout, a header name). Fix the fact only when the code proves the current value; otherwise leave it and list it as a follow-up in the PR.
 - **Excuse** (HACK, or a comment that justifies a workaround): delete it and file an issue titled "[<repo name>] ..." with file:line where `issues` says. Search first and reuse an open match.
 
 Before deleting a comment that states a constraint, check whether a test or a type already encodes it. If not, keep it.
