@@ -11,7 +11,7 @@ A pull request reviewer bot for [Orca](https://github.com/stablyai/orca). It rev
 ## Files
 
 - `SOUL.md`: who the bot is, what wakes it, what it reports and what it may never do.
-- `skills/pr-review-standard/SKILL.md`: the review procedure. Gate, understanding the task, the review standard, verification scaled by risk (mutation, adversarial and property-based testing, small TLA+ models), finding validation, comment format, learning and re-review.
+- `skills/pr-review-standard/SKILL.md`: the review procedure. Gate, understanding the task, the review standard, verification scaled by risk (mutation, adversarial, property-based and model-based testing, differential testing, fault injection, small TLA+ models, Foundry fuzz and invariant tests, migration checks), finding validation, comment format, learning and re-review.
 
 The soul stays short and stable. The procedure lives in the skill, so it can change without touching the bot's identity.
 

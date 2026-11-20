@@ -71,10 +71,23 @@ When the PR adds or changes logic (calculations, validation, permissions, state)
 - Two-sided test check: break the behavior and the test fails; refactor the internals and it still passes.
 - Adversarial: write the most wrong implementation that still passes the new tests. Every behavior it breaks unnoticed is a finding.
 - Property-based testing on pure functions with a clear invariant: roundtrip, idempotency, monotonicity, bounds, conservation of amounts.
+- Model-based stateful testing (`fc.commands` in fast-check, or the stack's equivalent) when the logic keeps state across calls: budgets, balances, sessions, connections. Generate sequences of operations and check an invariant after each one, such as "spend never exceeds the budget".
+
+When the PR is a refactor, or replaces a library or an implementation
+- Differential testing: run the base SHA and the PR head on the same inputs, generated or recorded, and compare the outputs. Any difference the PR does not declare is a finding.
+
+When the PR touches network calls, sockets, queues or external APIs
+- Fault injection on the edge the change touches: drop the connection mid-flow, return timeouts, partial or malformed responses, and duplicate deliveries. Check that the state stays consistent and the error reaches the caller.
 
 When the PR touches concurrency, retries, locks, queues or a state machine
 - A small TLA+ model or an interleaving test, only when the invariant fits in one line.
 - A pass counts only if the model catches a planted mutation. Label every counterexample as reproduced, reachable with the shipped config, or model only.
+
+When the PR changes a Solidity contract
+- Foundry fuzz and invariant tests on the changed functions: properties per function, and invariants over random call sequences, such as "total supply equals the sum of balances" or "only the owner can move funds".
+
+When the PR changes the database schema
+- Run the migration up and down against representative data, and check that the code at both the base SHA and the PR head works with the migrated schema.
 
 When the PR changes visible behavior (UI, CLI, endpoint)
 - Run it with the repo's verification tooling, through the real user path, forcing the edge the change touches. Keep the evidence: output, screenshot, request and response.
