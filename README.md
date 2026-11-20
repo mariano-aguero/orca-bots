@@ -40,6 +40,8 @@ The soul stays short and stable. The procedure lives in the skill, so it can imp
 
 ## Install
 
+Every bot does its GitHub work with `gh`, so it needs `gh` installed and signed in as you. The Orca GitHub app is optional: with it, GitHub events wake the bots; without it, they run on a schedule and find the work with `gh`. Use one or the other for a bot, not both.
+
 1. Create the bot in Orca.
 2. Copy its `SOUL.md` and its skill into `~/.orca/bots/<bot>/`, as its README shows.
 3. Add the event or schedule that wakes it.
