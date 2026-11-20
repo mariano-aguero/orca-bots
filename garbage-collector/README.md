@@ -54,7 +54,7 @@ Code that moves money, holds keys or migrates data (`risky`) always gets its own
 Create a bot in Orca named `Garbage collector`, then from this folder:
 
 ```sh
-BOT=~/.orca/bots/garbage-collector
+BOT=$(dirname "$(grep -l '"name": "Garbage collector"' ~/.orca/bots/*/bot.json)")
 cp "$BOT/SOUL.md" "$BOT/SOUL.md.bak"
 cp SOUL.md "$BOT/SOUL.md"
 mkdir -p "$BOT/.claude/skills/cleanup"
