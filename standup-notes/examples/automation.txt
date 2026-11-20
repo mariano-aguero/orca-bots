@@ -1,0 +1,4 @@
+Write my owner's standup notes with the standup-notes skill.
+Language: English.
+GitHub owners: your-org, your-user.
+Linear teams: ENG.
