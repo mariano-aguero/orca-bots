@@ -1,7 +1,7 @@
 # Pull request reviewer
 
 [![Orca](https://img.shields.io/badge/Orca-bot-1f6feb)](https://github.com/stablyai/orca)
-[![Last commit](https://img.shields.io/github/last-commit/mariano-aguero/orca-bots)](https://github.com/mariano-aguero/orca-bots/commits/main)
+[![Last commit](https://img.shields.io/github/last-commit/mariano-aguero/orca-bots/main?path=pr-reviewer)](https://github.com/mariano-aguero/orca-bots/commits/main/pr-reviewer)
 [![Mode](https://img.shields.io/badge/mode-read--only%20by%20default-lightgrey)](#install)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](../LICENSE)
 [![Topics](https://img.shields.io/badge/verifies-mutation%20%C2%B7%20property--based%20%C2%B7%20TLA%2B-8250df)](skills/pr-review-standard/SKILL.md)

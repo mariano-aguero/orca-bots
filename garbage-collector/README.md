@@ -1,6 +1,31 @@
 # Garbage collector
 
+[![Orca](https://img.shields.io/badge/Orca-bot-1f6feb)](https://github.com/stablyai/orca)
+[![Last commit](https://img.shields.io/github/last-commit/mariano-aguero/orca-bots/main?path=garbage-collector)](https://github.com/mariano-aguero/orca-bots/commits/main/garbage-collector)
+[![Mode](https://img.shields.io/badge/mode-never%20merges-lightgrey)](#how-a-run-works)
+[![Trigger](https://img.shields.io/badge/trigger-schedule-8250df)](#install)
+[![Trackers](https://img.shields.io/badge/issues-GitHub%20%7C%20Linear-5e6ad2)](#settings)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](../LICENSE)
+
 An Orca bot that, on a schedule, removes comments that carry nothing and code and tests proven obsolete from a repo. It opens small PRs against an integration branch for each run, so a person reviews every removal and decides when it reaches the base branch. It never merges.
+
+## How a run works
+
+```mermaid
+flowchart LR
+  base["base branch"] --> gc["chore/gc-&lt;date&gt;"]
+  gc --> c1["PR: remove comment slop (app A)"]
+  gc --> c2["PR: remove dead code (app A)"]
+  gc --> r1["PR: risky paths, human review"]
+  c1 & c2 & r1 -. "you merge" .-> gc
+  gc -. "you merge" .-> base
+```
+
+1. Picks the scope: what changed on the base branch since the last cleanup, plus the one app with the most comments that nobody cleaned in 90 days.
+2. Classifies every comment, and proves any code or test it removes is unused.
+3. Runs lint, typecheck, test and build. A PR whose checks fail is never opened.
+4. Opens up to six PRs against the run's integration branch, and files an issue for every workaround it found.
+5. Reports what it opened, what it left out and why.
 
 ## What it removes and what it keeps
 
