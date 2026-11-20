@@ -1,7 +1,7 @@
 # orca-bots
 
 [![Orca](https://img.shields.io/badge/built%20for-Orca-1f6feb)](https://github.com/stablyai/orca)
-[![Bots](https://img.shields.io/badge/bots-3-8250df)](#bots)
+[![Bots](https://img.shields.io/badge/bots-7-8250df)](#bots)
 [![Last commit](https://img.shields.io/github/last-commit/mariano-aguero/orca-bots)](https://github.com/mariano-aguero/orca-bots/commits/main)
 [![License: MIT](https://img.shields.io/github/license/mariano-aguero/orca-bots?color=green)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/mariano-aguero/orca-bots?style=flat)](https://github.com/mariano-aguero/orca-bots/stargazers)
@@ -15,6 +15,10 @@ Bots for [Orca](https://github.com/stablyai/orca), ready to install. Each one do
 | [Pull request reviewer](pr-reviewer/) | A review request, a mention or new commits | Checks the PR against its task, verifies it by running the code, and drafts validated inline comments with suggested fixes | Nothing until you allow it |
 | [Garbage collector](garbage-collector/) | A schedule | Removes useless comments and proven dead code and tests, one small PR per app | PRs against an integration branch, never merged |
 | [Daily standup notes](standup-notes/) | A weekday schedule | Writes Yesterday / Today / Blockers from your Orca workspaces, pull requests and Linear issues | Nothing |
+| [PR shepherd](pr-shepherd/) | A review, comment, failing check or merge on your own PR | Sorts review threads, prepares fixes with tests in its own clone, diagnoses failing checks, says when a PR is ready | Local commits until you allow pushes |
+| [Chief of staff](chief-of-staff/) | A weekday schedule, morning and evening | One plan from your issues, reviews, PRs, meetings and the other bots, and hands approved work to the right bot | Hand-offs and issues you approve |
+| [Eng lead](eng-lead/) | A hand-off | Plans an issue, waits for your OK, runs a writer and a verifier worker | Draft PRs |
+| [Ops watch](ops-watch/) | A schedule and failed checks | Reports new production and staging problems with their likely cause, and drafts the issue | Issues you approve |
 
 ## Layout
 
