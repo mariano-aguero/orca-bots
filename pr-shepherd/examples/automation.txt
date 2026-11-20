@@ -1,0 +1,3 @@
+Something happened on a pull request. Follow the pr-shepherd skill.
+Report here, short, in my owner's language.
+Allowed on GitHub: nothing yet. Commit fixes only in my own clone.
