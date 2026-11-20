@@ -1,0 +1,6 @@
+Run the cleanup.
+repo: your-org/your-repo (orca id <id from `orca repo list`>)
+base: main
+risky: src/payments/**, src/auth/**, prisma/migrations/**
+issues: github
+max_prs: 6
