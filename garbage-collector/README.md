@@ -7,7 +7,7 @@
 [![Trackers](https://img.shields.io/badge/issues-GitHub%20%7C%20Linear-5e6ad2)](#settings)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](../LICENSE)
 
-An Orca bot that, on a schedule, removes comments that carry nothing and code and tests proven obsolete from a repo. It opens small PRs against an integration branch for each run, so a person reviews every removal and decides when it reaches the base branch. It never merges.
+An Orca bot that, on a schedule, removes comments that carry nothing and code and tests proven obsolete from a repo, and audits one more area per run in rotation: unused dependencies, lint directives, flaky tests and stale TODOs. It opens small PRs against an integration branch for each run, so a person reviews every removal and decides when it reaches the base branch. It never merges.
 
 ## How a run works
 
@@ -23,9 +23,10 @@ flowchart LR
 
 1. Picks the scope: what changed on the base branch since the last cleanup, plus the one app with the most comments that nobody cleaned in 90 days.
 2. Classifies every comment, and proves any code or test it removes is unused.
-3. Runs lint, typecheck, test and build. A PR whose checks fail is never opened.
-4. Opens up to six PRs against the run's integration branch, and files an issue for every workaround it found.
-5. Reports what it opened, what it left out and why.
+3. Audits the next area in the rotation, recorded in its memory per repo.
+4. Runs lint, typecheck, test and build. A PR whose checks fail is never opened.
+5. Opens up to six PRs against the run's integration branch, and files an issue for every workaround it found.
+6. Reports what it opened, what it left out and why.
 
 ## What it removes and what it keeps
 
@@ -37,16 +38,20 @@ flowchart LR
 | Outdated fact in a useful comment | Correct it when the code proves the value, else list it as a follow-up |
 | Excuse: justifies a workaround or hack | Delete, and file an issue to fix the workaround |
 | Constraint, quirk or invariant the code does not show | Keep |
-| TODO and FIXME | Keep |
+| TODO and FIXME | Keep, unless the code proves its subject gone |
 | Code with no references, outside any public API or wiring | Delete, with the proof in the PR |
 | Tests of removed code, duplicates, or tests that assert nothing | Delete |
+| Dependency nothing imports and no script or config needs | Delete (rotation) |
+| `eslint-disable` or `@ts-ignore` that is no longer needed | Delete (rotation) |
+| Flaky test, by reruns on the base branch | Issue with the runs; fix only when the cause is clear, never by retries or skips (rotation) |
+| TODO older than 180 days that still holds | Listed in an issue (rotation) |
 
 Code that moves money, holds keys or migrates data (`risky`) always gets its own PR for a human review.
 
 ## Files
 
 - `SOUL.md`: who the bot is, its settings, what it reports and what it may never do.
-- `skills/cleanup/SKILL.md`: the procedure. Scope, comment classification, dead code proof, PR split, verification.
+- `skills/cleanup/SKILL.md`: the procedure. Scope, comment classification, dead code proof, rotating area, PR split, verification.
 - `examples/automation.txt`: an automation prompt with every setting.
 
 ## Install

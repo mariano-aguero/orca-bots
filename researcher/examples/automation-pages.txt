@@ -1,0 +1,2 @@
+Daily page watch, section 4b of the research skill. Pages: `pages` in my settings.
+Report here, short, in my owner's language, only when a page changed in a way that matters. Otherwise end with NO_REPLY.
