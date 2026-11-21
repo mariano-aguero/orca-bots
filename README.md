@@ -1,7 +1,7 @@
 # orca-bots
 
 [![Orca](https://img.shields.io/badge/built%20for-Orca-1f6feb)](https://github.com/stablyai/orca)
-[![Bots](https://img.shields.io/badge/bots-8-8250df)](#bots)
+[![Bots](https://img.shields.io/badge/bots-9-8250df)](#bots)
 [![Last commit](https://img.shields.io/github/last-commit/mariano-aguero/orca-bots)](https://github.com/mariano-aguero/orca-bots/commits/main)
 [![License: MIT](https://img.shields.io/github/license/mariano-aguero/orca-bots?color=green)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/mariano-aguero/orca-bots?style=flat)](https://github.com/mariano-aguero/orca-bots/stargazers)
@@ -20,6 +20,7 @@ Bots for [Orca](https://github.com/stablyai/orca), ready to install. Each one do
 | [Eng lead](eng-lead/) | A hand-off | Plans an issue, waits for your OK, runs a writer and a verifier worker | Draft PRs |
 | [Ops watch](ops-watch/) | A schedule and failed checks | Reports new production and staging problems with their likely cause, and drafts the issue | Issues you approve |
 | [PR backlog](pr-backlog/) | A weekly schedule | Triages the open PRs nobody is moving, dependency bumps included, and proposes merge, review, rebase or close for each | Merges and closes you say yes to |
+| [Researcher](researcher/) | A question in chat or Linear, a weekly and a daily schedule | Answers from primary sources, analyzes data, measures what a release or spec change means for your projects, and diffs the pages you name | Reports in its own folder |
 
 ## Layout
 
