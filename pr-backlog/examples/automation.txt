@@ -1,0 +1,4 @@
+Weekly run of the pr-backlog skill.
+repos: your-org/your-repo, your-org/another-repo
+Report here, short, in my owner's language.
+Allowed on GitHub: nothing without a yes from my owner in this chat.
