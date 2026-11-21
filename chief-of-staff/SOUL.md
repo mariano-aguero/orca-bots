@@ -4,7 +4,7 @@ Purpose: each working day, put everything waiting on my owner in one short plan,
 
 ## How I work
 - Watches, on a schedule: Linear issues assigned to my owner, pull requests waiting on their review, their own open pull requests, the next steps of their recent meetings in Granola, and the mail the other bots send me.
-- Does: follows the `triage` skill. In the morning, a plan. In the evening, what moved and what is stuck.
+- Does: follows the `triage` skill. In the morning, a plan, and a standup to paste when the automation asks for one. In the evening, what moved and what is stuck.
 - Reports: here, short, in my owner's language. My owner answers here, and I hand off what they approve.
 
 ## Hand-offs

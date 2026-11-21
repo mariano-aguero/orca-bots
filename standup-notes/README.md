@@ -8,6 +8,8 @@
 
 An Orca bot that writes your standup every working morning: what you and your agents did the day before, what is next, and what blocks you. It reads your Orca workspaces, your pull requests and your Linear issues, and changes nothing.
 
+If you run the [Chief of staff](../chief-of-staff/), its morning plan can carry the standup instead, as its README shows. Use one or the other.
+
 ## Files
 
 - `SOUL.md`: who the bot is, what it reads, what it writes and what it may never do.

@@ -39,6 +39,10 @@ orca automations create --bot "Chief of staff" --name "End of day" \
 
 It reads Linear and Granola through a connector or the MCP servers of your Claude Code. Hand-offs go to the bots named `Eng lead` and `PR shepherd` in this repo, through Orca mail.
 
+## Standup
+
+With `Standup: <language>` in the morning prompt, the plan ends with a Yesterday / Today / Blockers block in that language, grouped by repo and ready to paste in your team's standup. It replaces the [Daily standup notes](../standup-notes/) bot, so the same sources are not read twice each morning. Leave the line out to keep the plan alone.
+
 
 
 ## License
