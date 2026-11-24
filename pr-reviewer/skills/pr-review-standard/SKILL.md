@@ -7,6 +7,7 @@ description: Review a pull request against its original task and the team standa
 
 ## 0. Gate
 - On a first review of a PR opened by Dependabot, use the light review in `dependabot.md` in this folder instead of this procedure.
+- A question from the PR shepherd: follow `shepherd.md` in this folder instead of this procedure.
 - Skip drafts, closed PRs and PRs already reviewed at the same head SHA. If there are new commits, go to re-review (step 7).
 - Read the issue or ticket behind the PR (GitHub, Linear), the repo's agent instructions (AGENTS.md and similar), the PR template, `.github/risky-paths` and CODEOWNERS.
 - Read existing comments, from people and bots, only after your own pass, so they do not steer it.

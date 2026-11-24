@@ -6,12 +6,12 @@
 [![Trigger](https://img.shields.io/badge/trigger-GitHub%20events-8250df)](#install)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](../LICENSE)
 
-An Orca bot for the pull requests you author. When a teammate reviews or comments, it sorts each thread into fix, answer, already done, or yours to decide, prepares the fixes with a test each in its own clone, and drafts the replies. When a check fails, it finds the cause. It tells you when a PR can be marked ready or merged. It never merges, and it pushes nothing until you allow it.
+An Orca bot for the pull requests you author. When a teammate reviews or comments, it groups threads with the same cause, checks each claim against the code, and sorts it into fix, invalid, answer, already done, or yours to decide. It prepares the fixes with a test each in its own clone, asks the Pull request reviewer to confirm the invalid verdicts and the fixes that change logic, and drafts the replies. When a check fails, it finds the cause. It tells you when a PR can be marked ready or merged. It never merges, and it pushes nothing until you allow it.
 
 ## Files
 
 - `SOUL.md`: who the bot is, what wakes it, its opt-in permissions and what it may never do.
-- `skills/pr-shepherd/SKILL.md`: the procedure. Gate on the PR author, its own clone, thread triage, failing checks, ready, merged, writing to GitHub, and a second opinion from the Pull request reviewer.
+- `skills/pr-shepherd/SKILL.md`: the procedure. Gate on the PR author, its own clone, grouping threads and checking each claim, triage, failing checks, ready, merged, writing to GitHub, and a second opinion from the Pull request reviewer.
 - `examples/automation.txt`: the automation prompt.
 
 ## Install
@@ -46,9 +46,11 @@ The events fire on every pull request in those repos. The skill drops the ones y
 
 The two bots split pull requests by author. The reviewer takes the ones you review, the shepherd the ones you wrote. Install both SOULs from this repo: each ends with NO_REPLY on the other's pull requests.
 
+The shepherd also sends the reviewer a question per PR with the threads it judged invalid and the fixes that change logic or touch risky paths. The reviewer checks them with `shepherd.md` from its skill and answers in the shepherd's inbox. It does not wait: the next run picks up the answer. Without the reviewer installed, those items stay with you.
+
 ## Permissions
 
-It starts by committing fixes only in its own clone. To widen that, add to your copy of the prompt any of: "My owner allowed pushing my fix commits", "My owner allowed replying to and resolving the threads I fixed", "My owner allowed marking a draft PR ready for review".
+It starts by committing fixes only in its own clone. To widen that, add to your copy of the prompt any of: "My owner allowed pushing my fix commits", "My owner allowed replying to and resolving the threads I fixed", "My owner allowed resolving the threads I proved invalid", "My owner allowed marking a draft PR ready for review".
 
 
 ## Without the Orca GitHub app
