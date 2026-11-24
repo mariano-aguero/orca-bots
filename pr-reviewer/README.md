@@ -14,6 +14,7 @@ A pull request reviewer bot for [Orca](https://github.com/stablyai/orca). It rev
 - `skills/pr-review-standard/SKILL.md`: the review procedure. Gate, understanding the task, the review standard, verification scaled by risk (mutation, adversarial, property-based and model-based testing, differential testing, fault injection, small TLA+ models, Foundry fuzz and invariant tests, migration checks), finding validation, comment format, learning and re-review.
 - `skills/pr-review-standard/rereview.md`: the re-review after new commits. Interdiff from the last reviewed SHA, each finding rechecked with the evidence that found it, and the opt-in to resolve proved threads.
 - `skills/pr-review-standard/dependabot.md`: the light review for Dependabot PRs. Supply chain checks on the new version, then whether it breaks the repo.
+- `skills/pr-review-standard/shepherd.md`: answering the PR shepherd. Checks the threads it judged invalid and the fixes it wrote, and replies in its inbox without touching GitHub.
 - `skills/pr-review-standard/checkout.md`: where the PR code runs. A temporary worktree from your clone, found with `orca repo list` or in the folders the bot's memory maps to each GitHub owner.
 - `examples/automation.txt`: the automation prompt.
 
